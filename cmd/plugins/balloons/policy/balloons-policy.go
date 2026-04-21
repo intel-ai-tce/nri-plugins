@@ -1111,7 +1111,6 @@ func (p *balloons) newBalloon(blnDef *BalloonDef, confCpus bool) (*Balloon, erro
                 if requested.Difference(p.freeCpus).Size() > 0 {
                         return nil, balloonsError("reserved exact cpuset %q is not fully free, missing %q", requested, requested.Difference(p.freeCpus))			
 		}
-		newCpus, err := p.cpuAllocator.AllocateCpus(&exact, exact.Size(), blnDef.AllocatorPriority.Value().Option())
                 // AllocateCpus() may mutate the preferred/requested cpuset argument.
                 // Keep an immutable copy for post-allocation validation and logging.
                 exact := requested.Clone()
